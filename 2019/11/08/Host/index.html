@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://tmp.dxz.plus').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="结合Gdrive edu版 实现 无限流量 无限速 直连">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Host大法，实现Gdrive直连">
+<meta property="og:url" content="http:&#x2F;&#x2F;tmp.dxz.plus&#x2F;2019&#x2F;11&#x2F;08&#x2F;Host&#x2F;index.html">
+<meta property="og:site_name" content="学渣的世界你不懂">
+<meta property="og:description" content="结合Gdrive edu版 实现 无限流量 无限速 直连">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen-Shot-2019-10-05-at-11.53.28-AM-1024x497-speed.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen-Shot-2019-10-05-at-11.55.17-AM-87M-test.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;photo_2019-10-05_14-40-00-1024x685-lede.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen-Shot-2019-10-05-at-2.42.47-PM-1024x673-pdn.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen-Shot-2019-10-05-at-2.48.38-PM-1024x904-OWRT.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen-Shot-2019-10-05-at-2.45.12-PM-Owrt.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;dxz.plus&#x2F;usr&#x2F;uploads&#x2F;2019&#x2F;11&#x2F;4104828687.png">
+<meta property="og:updated_time" content="2019-12-07T15:00:38.937Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen-Shot-2019-10-05-at-11.53.28-AM-1024x497-speed.png">
+
+<link rel="canonical" href="http://tmp.dxz.plus/2019/11/08/Host/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Host大法，实现Gdrive直连 | 学渣的世界你不懂</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="学渣的世界你不懂" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学渣的世界你不懂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">5minutesTutorial</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/08/Host/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金牌大学渣">
+      <meta itemprop="description" content="5 minutes is more than enough">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学渣的世界你不懂">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Host大法，实现Gdrive直连
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-08 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-08T20:29:50+08:00">2019-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 23:00:38" itemprop="dateModified" datetime="2019-12-07T23:00:38+08:00">2019-12-07</time>
+              </span>
+
+          
+            <span id="/2019/11/08/Host/" class="post-meta-item leancloud_visitors" data-flag-title="Host大法，实现Gdrive直连" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/08/Host/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/08/Host/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>结合Gdrive edu版 实现 无限流量 无限速 直连</p>
+<a id="more"></a>
+
+<h2 id="why？"><a href="#why？" class="headerlink" title="why？"></a>why？</h2><p>因为有30几T的电影在Gdrive里，很多都是蓝光4k REMUX格式，为了省下硬盘的钱，不得不掏钱买好的代理，阿里云200M确实不错，合租70块一年，不过后来bug停了以后，就只好寻找别的办法，adman，justhost都试过，晚10点左右REMUX还是比较难受的。好在发现koolshare论坛上面有这篇文章，<a href="https://koolshare.cn/thread-164395-1-1.html，我自己搞了一下，发现联通用host解决免流量看Gdrive网盘电影问题，简直不能太爽；经过群友测试，电信大部分地区速度可以，移动就少部分地区可用了。不仅省下了代理的钱，速度更快了。" target="_blank" rel="noopener">https://koolshare.cn/thread-164395-1-1.html，我自己搞了一下，发现联通用host解决免流量看Gdrive网盘电影问题，简直不能太爽；经过群友测试，电信大部分地区速度可以，移动就少部分地区可用了。不仅省下了代理的钱，速度更快了。</a><br>晚十点左右看4k remux的流量情况<br><img src="http://share.dxz.plus/BlogContent/Screen-Shot-2019-10-05-at-11.53.28-AM-1024x497-speed.png" alt="晚十点左右看4k remux的流量情况"><br>这是和上图对应的87m码率的4k蓝光REMUX的播放情况 用的plex转码 手机本地播放<br><img src="http://share.dxz.plus/BlogContent/Screen-Shot-2019-10-05-at-11.55.17-AM-87M-test.png" alt="这是gdrive上面87m码率的4k播放情况 用的plex转码 手机本地播放"></p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>首先得有可以改host的路由器，梅林，老毛子固件的任何路由器，软路由。个人认为硬路由里面性价比最高的就是新路由3，70块钱咸鱼可得。软路由的话我的配置是J3455底层ESXI，虚拟了OpenWRT，win8 x64，debian10和黑裙。OpenWRT做旁路由，需要走host的机器（虚拟机）网关/nameserver填写旁路由的IP即可。</p>
+<h2 id="可用IP"><a href="#可用IP" class="headerlink" title="可用IP"></a>可用IP</h2><p>Luckily，这些IP没有失效过，只是不同地区/运营商速度有差异<br>172.217.160.6/7/8/9 … 所有能ping通的都可以用，目前效果最好的<br>216.58.204.202<br>172.217.14.202</p>
+<h2 id="5分钟教程开始"><a href="#5分钟教程开始" class="headerlink" title="5分钟教程开始"></a>5分钟教程开始</h2><p>非常简单，看图设置</p>
+<p>LEDE在这里设置<br><img src="http://share.dxz.plus/BlogContent/photo_2019-10-05_14-40-00-1024x685-lede.jpg" alt="LEDE设置"><br>老毛子固件路由器<br><img src="http://share.dxz.plus/BlogContent/Screen-Shot-2019-10-05-at-2.42.47-PM-1024x673-pdn.png" alt="老毛子固件路由器"><br>OpenWRT<br><img src="http://share.dxz.plus/BlogContent/Screen-Shot-2019-10-05-at-2.48.38-PM-1024x904-OWRT.png" alt="OpenWRT"><br>这个略微麻烦，但是确是操作最方便，效果也最好的<br>首先ssh进入路由器<br>在/etc/目录下创建几个host文件<br>vi /etc/host5<br>vi /etc/host6<br>vi /etc/host888<br>…<br>host 文件内容是</p>
+<pre><code>172.217.160.6  www.googleapis.com</code></pre><p>新建host文件<br><img src="http://share.dxz.plus/BlogContent/Screen-Shot-2019-10-05-at-2.45.12-PM-Owrt.png" alt="新建host文件"></p>
+<p>这样做的好处是在上图界面里可以直接指定相关host文件，如果遇到host连不上，可以自动切换，不会在不知情的情况下走了梯子。<br>其他路由器由于本人没有，所以也就不测试了。原理是一样的，依葫芦画瓢就行了。</p>
+<h2 id="测速"><a href="#测速" class="headerlink" title="测速"></a>测速</h2><p>我这里是采用比较麻烦的方法，但是测ip肯定是准的，不会出现走梯子的情况<br>把这个<a href="http://share.dxz.plus/BlogContent/host.test文件里面的所有ip换成你要测速的ip，然后将文件扔到OpenWRT的/etc/目录下" target="_blank" rel="noopener">http://share.dxz.plus/BlogContent/host.test文件里面的所有ip换成你要测速的ip，然后将文件扔到OpenWRT的/etc/目录下</a><br>按照上上图改路由器host的设置，添加一个 /etc/host.test的文件地址即可<br>测速命令用我的盘里2G大小的一个视频。需要在linux下执行，网关设为host路由器IP</p>
+<pre><code>wget --load-cookies /tmp/cookies.txt &quot;https://docs.google.com/uc?export=download&amp;confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate &apos;https://docs.google.com/uc?export=download&amp;id=1Ygr_r4vUlT1WlCZMKgVOcj_-IW86DbtN&apos; -O- | sed -rn &apos;s/.*confirm=([0-9A-Za-z_]+).*/\1\n/p&apos;)&amp;id=1Ygr_r4vUlT1WlCZMKgVOcj_-IW86DbtN&quot; -O test &amp;&amp; rm -rf /tmp/cookies.txt</code></pre><p>晚上10点的效果，北京联通<br><a href="https://t.me/KickGFWsAsswithHosts/333" target="_blank" rel="noopener">https://t.me/KickGFWsAsswithHosts/333</a></p>
+<h2 id="DONE"><a href="#DONE" class="headerlink" title="DONE"></a>DONE</h2><p>当然，方法有了，没有东西看怎么行？内容为王啊</p>
+<h2 id="福利"><a href="#福利" class="headerlink" title="福利"></a>福利</h2><p>我的电影库永久免费开放，私我你邮箱即可加入，我和群里的小朋友一起维护，一起备份，一直更新<br><img src="http://dxz.plus/usr/uploads/2019/11/4104828687.png" alt="团队盘"><br>里面的文件 如果有1080p和4k的都在4k目录下了，4k有两种 一种REMUX蓝光原盘，体积大，一种原盘rip体积小，有的话我也会放到一起。直接用emby/plex扫就行，一般都有字幕。也可以用nplayer或者其他播放器挂你的gmail，就能打开共享盘00了<br>大不了加频道，进群<br><a href="https://t.me/gdriveHost" target="_blank" rel="noopener">https://t.me/gdriveHost</a> （为避免被各种骚扰，改私密群了，这样比较安全，加频道主进群即可。稍微麻烦点儿，抱歉了）<br>从群主到管理全是小白，给你足够自信，让你畅所欲言</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/06/Gdrive15G/" rel="prev" title="5分钟-15G普通Gdrive账号变身无限制用不翻车账号">
+      <i class="fa fa-chevron-left"></i> 5分钟-15G普通Gdrive账号变身无限制用不翻车账号
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/09/AutorcloneSa5minutes/" rel="next" title="AutoRclone 教程 利用Group添加SA，5分钟搞定 gdrive转存">
+      AutoRclone 教程 利用Group添加SA，5分钟搞定 gdrive转存 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#why？"><span class="nav-number">1.</span> <span class="nav-text">why？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可用IP"><span class="nav-number">3.</span> <span class="nav-text">可用IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5分钟教程开始"><span class="nav-number">4.</span> <span class="nav-text">5分钟教程开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测速"><span class="nav-number">5.</span> <span class="nav-text">测速</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DONE"><span class="nav-number">6.</span> <span class="nav-text">DONE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#福利"><span class="nav-number">7.</span> <span class="nav-text">福利</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">金牌大学渣</p>
+  <div class="site-description" itemprop="description">5 minutes is more than enough</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">金牌大学渣</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'ERPCAPWFshjodtg7rS21cIGO-MdYXbMMI',
+    appKey: '2WM07eER0CSsxsFLNXMDyWcc',
+    placeholder: "Just go go",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'en' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

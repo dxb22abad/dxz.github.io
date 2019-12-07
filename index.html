@@ -169,93 +169,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/12/07/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="金牌大学渣">
-      <meta itemprop="description" content="5 minutes is more than enough">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学渣的世界你不懂">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/07/test/" class="post-title-link" itemprop="url">test</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-12-07 20:29:50 / Modified: 21:39:02" itemprop="dateCreated datePublished" datetime="2019-12-07T20:29:50+08:00">2019-12-07</time>
-            </span>
-
-          
-            <span id="/2019/12/07/test/" class="post-meta-item leancloud_visitors" data-flag-title="test" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/12/07/test/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/test/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>参考 <a href="https://ssu.tw/index.php/archives/31/" target="_blank" rel="noopener"><strong>使用docker快速部署shadowsocks-libev+v2ray-plugin</strong></a> 和 <a href="https://www.youtube.com/watch?v=8syWEJq8dH4&t=120s" target="_blank" rel="noopener"><strong>V2Ray拒绝减速CDN，自选香港日本CDN节点</strong></a>两位的方法, 结合<a href="https://teddysun.com/569.html" target="_blank" rel="noopener">秋水</a>提供的 <a href="https://hub.docker.com/r/teddysun/shadowsocks-libev/" target="_blank" rel="noopener">ss-libev</a> 和 <a href="https://hub.docker.com/r/teddysun/v2ray" target="_blank" rel="noopener">v2ray</a> 两个 dockers 用起来非常爽，全走CDN，不再阻断，速度尚可。总结一下</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/07/test/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/12/07/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -343,9 +256,850 @@
   
   
 
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/29/dockerV2raySsEmbyTrojan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金牌大学渣">
+      <meta itemprop="description" content="5 minutes is more than enough">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学渣的世界你不懂">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/29/dockerV2raySsEmbyTrojan/" class="post-title-link" itemprop="url">docker 实现 v2ray Shadowsocks-libev ( ss )和 emby 全走自选 CDN ( cloudflare ) 节点 记录 算不上 教程 已添加 trojan 特洛伊</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-29 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-29T20:29:50+08:00">2019-11-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 22:54:58" itemprop="dateModified" datetime="2019-12-07T22:54:58+08:00">2019-12-07</time>
+              </span>
+
+          
+            <span id="/2019/11/29/dockerV2raySsEmbyTrojan/" class="post-meta-item leancloud_visitors" data-flag-title="docker 实现 v2ray Shadowsocks-libev ( ss )和 emby 全走自选 CDN ( cloudflare ) 节点 记录 算不上 教程 已添加 trojan 特洛伊" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/29/dockerV2raySsEmbyTrojan/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/29/dockerV2raySsEmbyTrojan/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考 <a href="https://ssu.tw/index.php/archives/31/" target="_blank" rel="noopener"><strong>使用docker快速部署shadowsocks-libev+v2ray-plugin</strong></a> 和 <a href="https://www.youtube.com/watch?v=8syWEJq8dH4&t=120s" target="_blank" rel="noopener"><strong>V2Ray拒绝减速CDN，自选香港日本CDN节点</strong></a>两位的方法, 结合<a href="https://teddysun.com/569.html" target="_blank" rel="noopener">秋水</a>提供的 <a href="https://hub.docker.com/r/teddysun/shadowsocks-libev/" target="_blank" rel="noopener">ss-libev</a> 和 <a href="https://hub.docker.com/r/teddysun/v2ray" target="_blank" rel="noopener">v2ray</a> 两个 dockers 用起来非常爽，全走CDN，不再阻断，速度尚可。总结一下</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/29/dockerV2raySsEmbyTrojan/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/25/Oracle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金牌大学渣">
+      <meta itemprop="description" content="5 minutes is more than enough">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学渣的世界你不懂">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/25/Oracle/" class="post-title-link" itemprop="url">甲骨文 免费鸡 重装系统 dd debian 9</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-25 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-25T20:29:50+08:00">2019-11-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 22:57:02" itemprop="dateModified" datetime="2019-12-07T22:57:02+08:00">2019-12-07</time>
+              </span>
+
+          
+            <span id="/2019/11/25/Oracle/" class="post-meta-item leancloud_visitors" data-flag-title="甲骨文 免费鸡 重装系统 dd debian 9" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/25/Oracle/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/25/Oracle/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>ss最近太难受，而手里的甲骨文免费小鸡，无论如何也安装不上wireguard，系统是 ubuntu 18. 决定dd个debian。但是命令执行不下去，没办法，只好先创建一个收费鸡，系统换到16，然后在dd脚本至debian9</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/25/Oracle/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/15/AutorcloneTips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金牌大学渣">
+      <meta itemprop="description" content="5 minutes is more than enough">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学渣的世界你不懂">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/15/AutorcloneTips/" class="post-title-link" itemprop="url">Autorclone 教程的一些tips及折腾中遇到的错误的解决办法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-15 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-15T20:29:50+08:00">2019-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 22:58:06" itemprop="dateModified" datetime="2019-12-07T22:58:06+08:00">2019-12-07</time>
+              </span>
+
+          
+            <span id="/2019/11/15/AutorcloneTips/" class="post-meta-item leancloud_visitors" data-flag-title="Autorclone 教程的一些tips及折腾中遇到的错误的解决办法" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/15/AutorcloneTips/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/15/AutorcloneTips/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>用autorclone对于小白的我来说还是挺挑战的，一些基本操作都不会，遇到问题只能靠google，还好多数问题都能找到答案。整理一些使用中的小技巧，和一下自己使用过程中遇到的一些错误以及解决办法，让更多小白更顺畅的折腾。保持更新 UPDATING…</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/15/AutorcloneTips/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/10/AutorcloneSAGroup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金牌大学渣">
+      <meta itemprop="description" content="5 minutes is more than enough">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学渣的世界你不懂">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/10/AutorcloneSAGroup/" class="post-title-link" itemprop="url">AutoRclone 手动加 SA 到 Group 5分钟 5minuts</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-10 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-10T20:29:50+08:00">2019-11-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 22:58:50" itemprop="dateModified" datetime="2019-12-07T22:58:50+08:00">2019-12-07</time>
+              </span>
+
+          
+            <span id="/2019/11/10/AutorcloneSAGroup/" class="post-meta-item leancloud_visitors" data-flag-title="AutoRclone 手动加 SA 到 Group 5分钟 5minuts" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/10/AutorcloneSAGroup/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/10/AutorcloneSAGroup/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>手动添加 SA 到 group 非常简单,就是比较耗时,因为每天只能添加100个 SA 到group 。因为只需要添加一个用户 (admin) 即可操作 autorclone，实现更高效的操作（折腾） gdrive 互拷。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/10/AutorcloneSAGroup/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/09/AutorcloneSa5minutes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金牌大学渣">
+      <meta itemprop="description" content="5 minutes is more than enough">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学渣的世界你不懂">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/09/AutorcloneSa5minutes/" class="post-title-link" itemprop="url">AutoRclone 教程 利用Group添加SA，5分钟搞定 gdrive转存</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-09 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-09T20:29:50+08:00">2019-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 23:00:04" itemprop="dateModified" datetime="2019-12-07T23:00:04+08:00">2019-12-07</time>
+              </span>
+
+          
+            <span id="/2019/11/09/AutorcloneSa5minutes/" class="post-meta-item leancloud_visitors" data-flag-title="AutoRclone 教程 利用Group添加SA，5分钟搞定 gdrive转存" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/09/AutorcloneSa5minutes/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/09/AutorcloneSa5minutes/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="嘚哔嘚"><a href="#嘚哔嘚" class="headerlink" title="嘚哔嘚"></a>嘚哔嘚</h2><p>为了让小白真正实现5分钟学会用好autorclone转移Gdrive资源，我真是不遗余力。。。<br>经过Autorclone和Panini两位大佬指导，学会了用Group添加SA，虽然是手动的，比较费事，但是弄好以后一劳永逸。我提供的SA账号里面预计会加入900个SA。届时你只需要将这一个GROUP地址（<a href="mailto:dxzdxz@googlegroups.com" target="_blank" rel="noopener">dxzdxz@googlegroups.com</a>）加入（源）目标TD文件夹（管理员身份）即可。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/09/AutorcloneSa5minutes/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/08/Host/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金牌大学渣">
+      <meta itemprop="description" content="5 minutes is more than enough">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学渣的世界你不懂">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/08/Host/" class="post-title-link" itemprop="url">Host大法，实现Gdrive直连</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-08 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-08T20:29:50+08:00">2019-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 23:00:38" itemprop="dateModified" datetime="2019-12-07T23:00:38+08:00">2019-12-07</time>
+              </span>
+
+          
+            <span id="/2019/11/08/Host/" class="post-meta-item leancloud_visitors" data-flag-title="Host大法，实现Gdrive直连" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/08/Host/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/08/Host/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>结合Gdrive edu版 实现 无限流量 无限速 直连</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/08/Host/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/06/Gdrive15G/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金牌大学渣">
+      <meta itemprop="description" content="5 minutes is more than enough">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学渣的世界你不懂">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/06/Gdrive15G/" class="post-title-link" itemprop="url">5分钟-15G普通Gdrive账号变身无限制用不翻车账号</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-06 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-06T20:29:50+08:00">2019-11-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 23:01:31" itemprop="dateModified" datetime="2019-12-07T23:01:31+08:00">2019-12-07</time>
+              </span>
+
+          
+            <span id="/2019/11/06/Gdrive15G/" class="post-meta-item leancloud_visitors" data-flag-title="5分钟-15G普通Gdrive账号变身无限制用不翻车账号" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/06/Gdrive15G/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/06/Gdrive15G/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近gdrive有很多骚操作，玩了一段时间，做个记录吧。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/06/Gdrive15G/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/05/BackupTypecho/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金牌大学渣">
+      <meta itemprop="description" content="5 minutes is more than enough">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学渣的世界你不懂">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/05/BackupTypecho/" class="post-title-link" itemprop="url">rclone 一条命令备份docker搭建的typecho wordpress数据</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-05 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-05T20:29:50+08:00">2019-11-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 23:02:14" itemprop="dateModified" datetime="2019-12-07T23:02:14+08:00">2019-12-07</time>
+              </span>
+
+          
+            <span id="/2019/11/05/BackupTypecho/" class="post-meta-item leancloud_visitors" data-flag-title="rclone 一条命令备份docker搭建的typecho wordpress数据" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/05/BackupTypecho/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/05/BackupTypecho/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="废话"><a href="#废话" class="headerlink" title="废话"></a>废话</h2><p>typecho没有wordpress那么多插件，自动上传数据库啥的，但是wordpress想备份到gdrive，都要加钱买专业版。但在docker这，你不用花钱。<br>下面只示例typecho，wordpress同理。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/05/BackupTypecho/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/04/TestUrl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金牌大学渣">
+      <meta itemprop="description" content="5 minutes is more than enough">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学渣的世界你不懂">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/04/TestUrl/" class="post-title-link" itemprop="url">Test-图片外链是否可以用workers的</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-04 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-04T20:29:50+08:00">2019-11-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 23:02:57" itemprop="dateModified" datetime="2019-12-07T23:02:57+08:00">2019-12-07</time>
+              </span>
+
+          
+            <span id="/2019/11/04/TestUrl/" class="post-meta-item leancloud_visitors" data-flag-title="Test-图片外链是否可以用workers的" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/04/TestUrl/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/04/TestUrl/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>试试看看图片外链是否可以用workers的 那样就省本地空间了</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/04/TestUrl/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
   </div>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 
 
@@ -388,7 +1142,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

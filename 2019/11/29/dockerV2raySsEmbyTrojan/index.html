@@ -47,8 +47,8 @@
 
   <meta name="description" content="参考 使用docker快速部署shadowsocks-libev+v2ray-plugin 和 V2Ray拒绝减速CDN，自选香港日本CDN节点两位的方法, 结合秋水提供的 ss-libev 和 v2ray 两个 dockers 用起来非常爽，全走CDN，不再阻断，速度尚可。总结一下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http:&#x2F;&#x2F;tmp.dxz.plus&#x2F;2019&#x2F;12&#x2F;07&#x2F;test&#x2F;index.html">
+<meta property="og:title" content="docker 实现 v2ray Shadowsocks-libev ( ss )和 emby 全走自选 CDN ( cloudflare ) 节点 记录 算不上 教程 已添加 trojan 特洛伊">
+<meta property="og:url" content="http:&#x2F;&#x2F;tmp.dxz.plus&#x2F;2019&#x2F;11&#x2F;29&#x2F;dockerV2raySsEmbyTrojan&#x2F;index.html">
 <meta property="og:site_name" content="学渣的世界你不懂">
 <meta property="og:description" content="参考 使用docker快速部署shadowsocks-libev+v2ray-plugin 和 V2Ray拒绝减速CDN，自选香港日本CDN节点两位的方法, 结合秋水提供的 ss-libev 和 v2ray 两个 dockers 用起来非常爽，全走CDN，不再阻断，速度尚可。总结一下">
 <meta property="og:locale" content="en">
@@ -64,11 +64,11 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-30%20at%2011.30.13%20PM-Compare.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-30%20at%2010.17.33%20AM-SSL-TLS.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-12-06%20at%209.26.49%20AM-trojonCDNoff.png">
-<meta property="og:updated_time" content="2019-12-07T13:39:02.412Z">
+<meta property="og:updated_time" content="2019-12-07T14:54:58.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-29%20at%2012.28.39%20AM-ARecord.png">
 
-<link rel="canonical" href="http://tmp.dxz.plus/2019/12/07/test/">
+<link rel="canonical" href="http://tmp.dxz.plus/2019/11/29/dockerV2raySsEmbyTrojan/">
 
 
 <script id="page-configurations">
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>test | 学渣的世界你不懂</title>
+  <title>docker 实现 v2ray Shadowsocks-libev ( ss )和 emby 全走自选 CDN ( cloudflare ) 节点 记录 算不上 教程 已添加 trojan 特洛伊 | 学渣的世界你不懂</title>
   
 
 
@@ -114,7 +114,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="学渣的世界你不懂" type="application/atom+xml">
-<link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"></script></head>
+<script src="/assets/js/DPlayer.min.js"></script><link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/12/07/test/">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/29/dockerV2raySsEmbyTrojan/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -196,7 +196,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          test
+          docker 实现 v2ray Shadowsocks-libev ( ss )和 emby 全走自选 CDN ( cloudflare ) 节点 记录 算不上 教程 已添加 trojan 特洛伊
         </h1>
 
         <div class="post-meta">
@@ -205,13 +205,19 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-12-07 20:29:50 / Modified: 21:39:02" itemprop="dateCreated datePublished" datetime="2019-12-07T20:29:50+08:00">2019-12-07</time>
+              <time title="Created: 2019-11-29 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-29T20:29:50+08:00">2019-11-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 22:54:58" itemprop="dateModified" datetime="2019-12-07T22:54:58+08:00">2019-12-07</time>
+              </span>
 
           
-            <span id="/2019/12/07/test/" class="post-meta-item leancloud_visitors" data-flag-title="test" title="Views">
+            <span id="/2019/11/29/dockerV2raySsEmbyTrojan/" class="post-meta-item leancloud_visitors" data-flag-title="docker 实现 v2ray Shadowsocks-libev ( ss )和 emby 全走自选 CDN ( cloudflare ) 节点 记录 算不上 教程 已添加 trojan 特洛伊" title="Views">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -226,8 +232,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2019/12/07/test/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/07/test/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/11/29/dockerV2raySsEmbyTrojan/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/29/dockerV2raySsEmbyTrojan/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -246,7 +252,7 @@
 <a id="more"></a>
 
 <h2 id="废话，可以不看"><a href="#废话，可以不看" class="headerlink" title="废话，可以不看"></a>废话，可以不看</h2><p>垃圾小鸡如何拯救（剁手党如何回本）？雪嫩的小白，如何有工程师的感觉？ 经济不景气如何提振？看这里就对了<br>折腾了两天，基本实现想要的效果。docker 配置 ss+v2ray+emby ws+http+tls+CDN。为了掩饰，我在aws的lightsail开了一个爱尔兰节点的小鸡，512内存，基本匹配市面垃圾小鸡。<br>Docker的有点就是一旦搭建好以后，可以随便折腾，配置文件保存到本地，换机分分钟<br>caddy 的优势是及其轻量，同时可以自动申请并续期证书，方便到家<br>但是现在有一个坑卡住了，就是caddy自动申请脚本，还是要到dns去添加txt记录，而教程里面是要到阿里云的dns去添加txt。所以不能自动。以本白现在的水平，搞不定了，期待高手出现。。。<br>除了这篇手动教程，还有很多选择，比如<a href="https://blog.sprov.xyz/2019/08/03/v2-ui/" target="_blank" rel="noopener"><strong>这篇面板</strong></a>教程，也非常方便。还有<a href="https://github.com/wulabing/V2Ray_ws-tls_bash_onekey" target="_blank" rel="noopener"><strong>这篇</strong></a>，是我之前一直在用的一键脚本。在多数新装的vps上面都可以成功。本教程的目的就是一个：折腾<br>如果你对自己折腾出来的东西感到开心，不怕麻烦，那就继续<br>当然，自己折腾，把思路整理清楚了，基本上什么环境都可以适用，并且配置文件完全自己驾驭，想改什么都可以。不像用脚本，出了问题，出了换系统，换脚本之外，别无他法，相当无助<br>当然，教程还需要完善，也有很多错误，需要慢慢改<br>caddy配置文件里面有3个网站v2，ss，emby<br>按需使用，增减设置文件，开停相应docker即可<br>折腾开心哈<br><strong>注意，教程里面的 邮箱信息 API 信息以及密码 UUID等 需要你自己更改，不要和教程的一毛一样</strong></p>
-<h2 id="视频记录"><a href="#视频记录" class="headerlink" title="视频记录"></a>视频记录</h2><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"http://share.dxz.plus/BlogContent/My%20Movie-dockerV2raySsCDN.mp4","pic":"http://share.dxz.plus/BlogContent/My%20Movie-dockerV2raySsCDN.png"},"danmaku":{"id":"9E2E3368B56CDBB4","api":"http://dplayer.daoapp.io","token":"tokendemo"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+<h2 id="视频记录"><a href="#视频记录" class="headerlink" title="视频记录"></a>视频记录</h2><div id="dplayer2" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer2"),"theme":"#FADFA3","video":{"url":"http://share.dxz.plus/BlogContent/My%20Movie-dockerV2raySsCDN.mp4","pic":"http://share.dxz.plus/BlogContent/My%20Movie-dockerV2raySsCDN.png"},"danmaku":{"id":"9E2E3368B56CDBB4","api":"http://dplayer.daoapp.io","token":"tokendemo"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
 
 <p>干什么都有第一次，这个视频够简陋的了，打码就废了好长时间。机器也不行，小白难，穷小白难上加难</p>
 <h2 id="搞定CDN"><a href="#搞定CDN" class="headerlink" title="搞定CDN"></a>搞定CDN</h2><p>lightsail的系统太操蛋，先dd个debian 9<br>用脚本</p>
@@ -389,7 +395,7 @@ caddy -conf /root/caddy/Caddyfile &gt;/dev/null 2&gt;&amp;1 &amp;</code></pre><p
 <li><p>晚上速度待测，昨天速度只有10Mb/s，比较差，符合垃圾小鸡的水平，但是比直连要快</p>
 </li>
 <li><p>晚上高峰结果，40m码率无压力</p>
-<div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"theme":"#FADFA3","video":{"url":"http://share.dxz.plus/BlogContent/IMG_8362-IE-emby-test-11292230.MOV","pic":"http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-29%20at%2011.17.20%20PM-emby-test-11292230.png"},"danmaku":{"id":"9E2E3368B56CDBB4","api":"http://dplayer.daoapp.io","token":"tokendemo"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+<div id="dplayer3" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer3"),"theme":"#FADFA3","video":{"url":"http://share.dxz.plus/BlogContent/IMG_8362-IE-emby-test-11292230.MOV","pic":"http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-29%20at%2011.17.20%20PM-emby-test-11292230.png"},"danmaku":{"id":"9E2E3368B56CDBB4","api":"http://dplayer.daoapp.io","token":"tokendemo"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
 </li>
 <li><p>爱尔兰小鸡直连和CDN对比<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-30%20at%2011.30.13%20PM-Compare.png" alt="compare"></p>
 </li>
@@ -477,10 +483,13 @@ nano /root/trojan/config.json</code></pre><p>密码dxz，改成你想要的</p>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/07/hello-world/" rel="prev" title="Hello World">
-      <i class="fa fa-chevron-left"></i> Hello World
+    <a href="/2019/11/25/Oracle/" rel="prev" title="甲骨文 免费鸡 重装系统 dd debian 9">
+      <i class="fa fa-chevron-left"></i> 甲骨文 免费鸡 重装系统 dd debian 9
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/07/hello-world/" rel="next" title="Hello World">
+      Hello World <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -533,7 +542,7 @@ nano /root/trojan/config.json</code></pre><p>密码dxz，改成你想要的</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

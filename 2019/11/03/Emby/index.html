@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://tmp.dxz.plus').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="免费的虽然是最贵的，但是性价比却无可争议的+∞ 废话一堆写这个教程是主要是为了测试docker搭建typecho，由于docker映射文件夹简直太方便了，所有网站数据分分钟打包，备份，搬家。适合我这样的瞎折腾。更主要的，我们手里有n多垃圾小鸡，除了探针，网盘目录外还有别的骚法么？这篇文章带你骚。基本上你的小鸡速度够快，尤其是晚上，比如北方联通用justhost，甲骨文之类的都可以非常爽快的试用这个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VPS 5分钟极速搭建emby服务">
+<meta property="og:url" content="http:&#x2F;&#x2F;tmp.dxz.plus&#x2F;2019&#x2F;11&#x2F;03&#x2F;Emby&#x2F;index.html">
+<meta property="og:site_name" content="学渣的世界你不懂">
+<meta property="og:description" content="免费的虽然是最贵的，但是性价比却无可争议的+∞ 废话一堆写这个教程是主要是为了测试docker搭建typecho，由于docker映射文件夹简直太方便了，所有网站数据分分钟打包，备份，搬家。适合我这样的瞎折腾。更主要的，我们手里有n多垃圾小鸡，除了探针，网盘目录外还有别的骚法么？这篇文章带你骚。基本上你的小鸡速度够快，尤其是晚上，比如北方联通用justhost，甲骨文之类的都可以非常爽快的试用这个">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;dxz.plus&#x2F;usr&#x2F;uploads&#x2F;2019&#x2F;11&#x2F;2090253874.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;dxz.plus&#x2F;usr&#x2F;uploads&#x2F;2019&#x2F;11&#x2F;1437937058.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;dxz.plus&#x2F;usr&#x2F;uploads&#x2F;2019&#x2F;11&#x2F;2473017914.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;dxz.plus&#x2F;usr&#x2F;uploads&#x2F;2019&#x2F;11&#x2F;939861859.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-06%20at%208.58.46%20AM-remount.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-04%20at%205.14.59%20PM-diskRelations.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;photo_2019-11-20_09-12-38-embySetup.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Recording%202019-11-23%20at%2011.05.58%20PM-SouthPark.gif">
+<meta property="og:image" content="http:&#x2F;&#x2F;dxz.plus&#x2F;usr&#x2F;uploads&#x2F;2019&#x2F;11&#x2F;4104828687.png">
+<meta property="og:updated_time" content="2019-12-07T15:06:25.744Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;dxz.plus&#x2F;usr&#x2F;uploads&#x2F;2019&#x2F;11&#x2F;2090253874.png">
+
+<link rel="canonical" href="http://tmp.dxz.plus/2019/11/03/Emby/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>VPS 5分钟极速搭建emby服务 | 学渣的世界你不懂</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="学渣的世界你不懂" type="application/atom+xml">
+<script src="/assets/js/DPlayer.min.js"></script><link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学渣的世界你不懂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">5minutesTutorial</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/03/Emby/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金牌大学渣">
+      <meta itemprop="description" content="5 minutes is more than enough">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学渣的世界你不懂">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VPS 5分钟极速搭建emby服务
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-03 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-03T20:29:50+08:00">2019-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 23:06:25" itemprop="dateModified" datetime="2019-12-07T23:06:25+08:00">2019-12-07</time>
+              </span>
+
+          
+            <span id="/2019/11/03/Emby/" class="post-meta-item leancloud_visitors" data-flag-title="VPS 5分钟极速搭建emby服务" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/03/Emby/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/03/Emby/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>免费的虽然是最贵的，但是性价比却无可争议的+∞</p>
+<h2 id="废话一堆"><a href="#废话一堆" class="headerlink" title="废话一堆"></a>废话一堆</h2><p>写这个教程是主要是为了测试docker搭建typecho，由于docker映射文件夹简直太方便了，所有网站数据分分钟打包，备份，搬家。适合我这样的瞎折腾。<br>更主要的，我们手里有n多垃圾小鸡，除了探针，网盘目录外还有别的骚法么？<br>这篇文章带你骚。<br>基本上你的小鸡速度够快，尤其是晚上，比如北方联通用justhost，甲骨文之类的都可以非常爽快的试用这个方法。<br>由于是本地kodi解码，串流播放，服务器没啥压力，配置不需要多高，同时也没必要买emby专业版了，我的plex算是白买了，nas我还特意买的J3455服务端解码，看来也是浪费。<br>虽然读取的是gdrive电影，但是由于是vps搭建，host大法基本用不到了。并且这个emby个人服务应该不会触及红线，系统占用低，不用担心被各种ban(GFW&amp;VPS providers)<br>5分钟也就是个标题，看看就好，熟练了也就10分钟以内就搞定。我一连气儿搭了3个服务，太爽了，不分享出来是不行的，憋着难受</p>
+<a id="more"></a>
+
+<h2 id="安装必要命令"><a href="#安装必要命令" class="headerlink" title="安装必要命令"></a>安装必要命令</h2><pre><code>apt-get update
+apt-get install curl zip nano vim -y</code></pre><h2 id="搭建docker，Rclone"><a href="#搭建docker，Rclone" class="headerlink" title="搭建docker，Rclone"></a>搭建docker，Rclone</h2><p>还是一键脚本</p>
+<p><strong>Docker</strong></p>
+<pre><code>curl -fsSL https://get.docker.com -o get-docker.sh
+    sh get-docker.sh</code></pre><p>发现为了兼顾锐速，选择debian8的情况下，上述脚本无法安装docker，那么手动安装如下：<br>添加源</p>
+<pre><code>nano /etc/apt/sources.list</code></pre><p>把下面几行填入</p>
+<pre><code>deb http://http.debian.net/debian jessie-backports main
+deb http://packages.dotdeb.org jessie all
+deb-src http://packages.dotdeb.org jessie all</code></pre><p>更新源卸载老版本并安装稳定版docke-ce</p>
+<pre><code>apt-get update
+
+apt-get remove docker docker.io  docker-engine containerd runc
+
+apt-get install \
+     apt-transport-https \
+     ca-certificates \
+     curl \
+     gnupg2 \
+     software-properties-common
+
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+
+add-apt-repository \
+   &quot;deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable&quot;
+
+apt-get update
+
+apt-get install docker-ce</code></pre><p><strong>Rclone</strong></p>
+<p>脚本，这个一般不会出错</p>
+<pre><code>curl https://rclone.org/install.sh | bash</code></pre><p>如何vps挂载rclone 参看这个教程，我就不废话了</p>
+<pre><code>https://wzfou.com/rclone-cos-fuse-ossfs/</code></pre><h2 id="建立必要目录"><a href="#建立必要目录" class="headerlink" title="建立必要目录"></a>建立必要目录</h2><p>主要用到 root 目录下的 /root/emby/config 和 /root/rclone/ldfdsa00</p>
+<pre><code>cd /root
+mkdir emby
+mkdir emby/config
+mkdir rclone
+mkdir rclone/ldfdsa00</code></pre><p>ldfdsa00是我的rclone挂载的目录</p>
+<h2 id="挂载rclone"><a href="#挂载rclone" class="headerlink" title="挂载rclone"></a>挂载rclone</h2><p>我挂载的是自己的团队盘，你要将ldfdsa00替换成你自己的gdrive</p>
+<pre><code>rclone mount ldfdsa00: /root/rclone/ldfdsa00  --buffer-size 1G --vfs-read-chunk-size 256M --vfs-read-chunk-size-limit 2G  --allow-non-empty --allow-other   --dir-cache-time 12h  &gt;/dev/null 2&gt;&amp;1 &amp;</code></pre><p>在contab添加开机自动挂载</p>
+<pre><code>nano /etc/crontab</code></pre><p>添加一行</p>
+<pre><code>@reboot root  rclone mount ldfdsa00: /root/rclone/ldfdsa00  --buffer-size 1G --vfs-read-chunk-size 256M --vfs-read-chunk-size-limit 2G  --allow-non-empty --allow-other   --dir-cache-time 12h  &gt;/dev/null 2&gt;&amp;1 &amp;</code></pre><p><img src="http://dxz.plus/usr/uploads/2019/11/2090253874.png" alt="Screen Shot 2019-11-03 at 3.54.29 PM crontab.png"><br>然后ctrl+x 按y 回车</p>
+<h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><pre><code>docker run --name=emby -d -v /root/emby/config:/config     -v /root/rclone:/clone     -p 8096:8096  -p 8920:8920  -e UID=1000  -e GID=100  -e GIDLIST=100 --restart unless-stopped  emby/embyserver:latest</code></pre><h2 id="增加虚拟内存"><a href="#增加虚拟内存" class="headerlink" title="增加虚拟内存"></a>增加虚拟内存</h2><p>依旧是脚本</p>
+<pre><code>wget https://www.moerats.com/usr/shell/swap.sh &amp;&amp; bash swap.sh</code></pre><p>选1再填2000，因为我用的小鸡只有512m内存，不加虚拟内存的话，rclone挂载很容易掉线</p>
+<h2 id="配置emby"><a href="#配置emby" class="headerlink" title="配置emby"></a>配置emby</h2><p>浏览器输入IP:8096即可打开emby server<br>然后就是设置，记得新建用户的时候同时新建一个emby免费账号，并填入，后面客户端方便登陆。<br>需要注意的一点就是电影的目录选择你自己上面挂载好并映射到emby docker的目录 /clone/ldfdsa00<br><img src="http://dxz.plus/usr/uploads/2019/11/1437937058.png" alt="Screen Shot 2019-11-03 at 4.02.22 PM emby目录.png"></p>
+<h2 id="emby串流"><a href="#emby串流" class="headerlink" title="emby串流"></a>emby串流</h2><p>添加好电影目录并搜刮好以后就可以用kodi emby插件进行串流播放<br>先安装emby插件<br><img src="http://dxz.plus/usr/uploads/2019/11/2473017914.jpg" alt="photo_2019-11-03_16-15-25.jpg"><br>登陆并选择之前建立的emby账号下的电影库，我在oracle小鸡搭建的，速度稳定40m，一般的电影都可以，少数4k rip电影也可以看<br><img src="http://dxz.plus/usr/uploads/2019/11/939861859.jpg" alt="photo_2019-11-03_16-15-03.jpg"></p>
+<h2 id="done"><a href="#done" class="headerlink" title="done"></a>done</h2><h2 id="常见出错"><a href="#常见出错" class="headerlink" title="常见出错"></a>常见出错</h2><p><strong>提示FUSE error</strong></p>
+<pre><code>error: failed to mount FUSE fs: fusermount: exec: &quot;fusermount&quot;: executable file not found in $PATH</code></pre><p>安装 sshfs</p>
+<pre><code>apt install sshfs -y</code></pre><p><strong>Kodi emby 插件</strong></p>
+<p>官方的embycon好像不灵，用这个备用源的</p>
+<pre><code>http://kodi.emby.media/</code></pre><p>如果rclone掉了 reboot就行<br>如果rclone账号api超限，需要换一个账号，挂载相同路径的（团队）盘目录<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-06%20at%208.58.46%20AM-remount.png" alt="remount"></p>
+<p><strong>还是推荐embycon插件，这个虽然不能添加多服务器，但是稳定性好很多，资源占用少</strong></p>
+<p><strong>重新挂载gd</strong></p>
+<pre><code>umount /root/rclone/ldfdsa00 #卸载源目录
+
+rclone mount gd（换成新账号，内部目录要匹配）: /root/rclone/ldfdsa00  --buffer-size 1G --vfs-read-chunk-size 256M --vfs-read-chunk-size-limit 2G  --allow-non-empty --allow-other   --dir-cache-time 12h  &gt;/dev/null 2&gt;&amp;1 &amp;      #重新挂载
+
+docker restart emby #重启emby server</code></pre><p><strong>挂载目录</strong></p>
+<p>挂载gd 容器内gd 有点乱， 来张图说明一下<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-04%20at%205.14.59%20PM-diskRelations.png" alt="目录关系"></p>
+<h2 id="挂载00电影盘"><a href="#挂载00电影盘" class="headerlink" title="挂载00电影盘"></a>挂载00电影盘</h2><p>emby如下设置，可以扫00盘的电影和美剧，缩略图都扫好了，你只需设置自己喜欢的字幕即可</p>
+<p><img src="http://share.dxz.plus/BlogContent/photo_2019-11-20_09-12-38-embySetup.jpg" alt="embySetup"></p>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>搭建在甲骨文免费vps上的emby server，完美运行</p>
+<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"http://share.dxz.plus/BlogContent/Screen%20Recording%202019-11-19%20at%2010.21.00%20PM-EmbyMovies.mov","pic":"http://share.dxz.plus/BlogContent/Screen%20Recording%202019-11-19%20at%2010.21.00%20PM-EmbyMovies.png"},"danmaku":{"id":"9E2E3368B56CDBB4","api":"http://dplayer.daoapp.io","token":"tokendemo"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+<p>南方公园刮削的算是比较好的了</p>
+<div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"theme":"#FADFA3","video":{"url":"http://share.dxz.plus/BlogContent/Screen%20Recording%202019-11-23%20at%2011.05.58%20PM-SouthPark.mov","pic":"http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-23%20at%2011.06.47%20PM-SouthPark.png"},"danmaku":{"id":"9E2E3368B56CDBB4","api":"http://dplayer.daoapp.io","token":"tokendemo"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+
+<p>视频打不开看gif<br><img src="http://share.dxz.plus/BlogContent/Screen%20Recording%202019-11-23%20at%2011.05.58%20PM-SouthPark.gif" alt="SouthPark"><br>搞不定加群（via频道主） <a href="https://t.me/gdriveHost" target="_blank" rel="noopener">https://t.me/gdriveHost</a><br>我们的电影库永久免费开放，私我你邮箱即可加入，我和群里的小朋友一起维护，一起备份，一直更新<br><img src="http://dxz.plus/usr/uploads/2019/11/4104828687.png" alt="Screen Shot 2019-11-03 at 4.49.59 PM movie.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/04/TestUrl/" rel="next" title="Test-图片外链是否可以用workers的">
+      Test-图片外链是否可以用workers的 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#废话一堆"><span class="nav-number">1.</span> <span class="nav-text">废话一堆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装必要命令"><span class="nav-number">2.</span> <span class="nav-text">安装必要命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建docker，Rclone"><span class="nav-number">3.</span> <span class="nav-text">搭建docker，Rclone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立必要目录"><span class="nav-number">4.</span> <span class="nav-text">建立必要目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挂载rclone"><span class="nav-number">5.</span> <span class="nav-text">挂载rclone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拉取镜像"><span class="nav-number">6.</span> <span class="nav-text">拉取镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加虚拟内存"><span class="nav-number">7.</span> <span class="nav-text">增加虚拟内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置emby"><span class="nav-number">8.</span> <span class="nav-text">配置emby</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#emby串流"><span class="nav-number">9.</span> <span class="nav-text">emby串流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#done"><span class="nav-number">10.</span> <span class="nav-text">done</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见出错"><span class="nav-number">11.</span> <span class="nav-text">常见出错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挂载00电影盘"><span class="nav-number">12.</span> <span class="nav-text">挂载00电影盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">13.</span> <span class="nav-text">效果</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">金牌大学渣</p>
+  <div class="site-description" itemprop="description">5 minutes is more than enough</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">金牌大学渣</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'ERPCAPWFshjodtg7rS21cIGO-MdYXbMMI',
+    appKey: '2WM07eER0CSsxsFLNXMDyWcc',
+    placeholder: "Just go go",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'en' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

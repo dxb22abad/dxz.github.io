@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://tmp.dxz.plus').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="手动添加 SA 到 group 非常简单,就是比较耗时,因为每天只能添加100个 SA 到group 。因为只需要添加一个用户 (admin) 即可操作 autorclone，实现更高效的操作（折腾） gdrive 互拷。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AutoRclone 手动加 SA 到 Group 5分钟 5minuts">
+<meta property="og:url" content="http:&#x2F;&#x2F;tmp.dxz.plus&#x2F;2019&#x2F;11&#x2F;10&#x2F;AutorcloneSAGroup&#x2F;index.html">
+<meta property="og:site_name" content="学渣的世界你不懂">
+<meta property="og:description" content="手动添加 SA 到 group 非常简单,就是比较耗时,因为每天只能添加100个 SA 到group 。因为只需要添加一个用户 (admin) 即可操作 autorclone，实现更高效的操作（折腾） gdrive 互拷。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-08%20at%2011.15.11%20PM-SAs.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-08%20at%2011.52.17%20PM-group-creating.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-08%20at%2011.09.26%20PM-add0.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-08%20at%2011.08.26%20PM-add2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-08%20at%2011.22.23%20PM-KeepAdding.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-08%20at%2011.27.50%20PM-toDir.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-08%20at%2011.33.27%20PM-accountRthere.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-08%20at%2011.41.18%20PM-command.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-08%20at%2011.39.50%20PM-voila.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-11%20at%2011.11.50%20AM-remove.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-11%20at%2011.08.59%20AM-cmd.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-11%20at%2011.32.20%20AM-rmvd.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;photo_2019-11-12_15-04-12-FeifanGetSaScript.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-11%20at%2012.09.33%20PM-error.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-11%20at%201.40.13%20PM-auth.png">
+<meta property="og:updated_time" content="2019-12-07T14:58:50.593Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-08%20at%2011.15.11%20PM-SAs.png">
+
+<link rel="canonical" href="http://tmp.dxz.plus/2019/11/10/AutorcloneSAGroup/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>AutoRclone 手动加 SA 到 Group 5分钟 5minuts | 学渣的世界你不懂</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="学渣的世界你不懂" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学渣的世界你不懂</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">5minutesTutorial</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/10/AutorcloneSAGroup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金牌大学渣">
+      <meta itemprop="description" content="5 minutes is more than enough">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学渣的世界你不懂">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AutoRclone 手动加 SA 到 Group 5分钟 5minuts
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-10 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-10T20:29:50+08:00">2019-11-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 22:58:50" itemprop="dateModified" datetime="2019-12-07T22:58:50+08:00">2019-12-07</time>
+              </span>
+
+          
+            <span id="/2019/11/10/AutorcloneSAGroup/" class="post-meta-item leancloud_visitors" data-flag-title="AutoRclone 手动加 SA 到 Group 5分钟 5minuts" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/10/AutorcloneSAGroup/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/10/AutorcloneSAGroup/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>手动添加 SA 到 group 非常简单,就是比较耗时,因为每天只能添加100个 SA 到group 。因为只需要添加一个用户 (admin) 即可操作 autorclone，实现更高效的操作（折腾） gdrive 互拷。</p>
+<a id="more"></a>
+
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>结合这篇堪称完美的教程 <a href="https://567899.xyz/google_drive_folderclone.html，拿到" target="_blank" rel="noopener">https://567899.xyz/google_drive_folderclone.html，拿到</a> SA.json files. 并通过 Chrome 的 Email Extractor 插件提取到邮件地址。<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-08%20at%2011.15.11%20PM-SAs.png" alt="SAList"><br>下一步就是</p>
+<h2 id="创建group"><a href="#创建group" class="headerlink" title="创建group"></a>创建group</h2><p>在这里 <a href="https://groups.google.com/" target="_blank" rel="noopener">https://groups.google.com/</a> 创建 group，<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-08%20at%2011.52.17%20PM-group-creating.png" alt="groupCreating"><br><a href="mailto:jkljkl@googlegroups.com" target="_blank" rel="noopener">jkljkl@googlegroups.com</a>就是管理员，也是最后要加到TD目录的 SA group<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-08%20at%2011.09.26%20PM-add0.png" alt="admin"><br>按图添加, 一步都不要错，否则就得24小时后在添加了，比如我<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-08%20at%2011.08.26%20PM-add2.png" alt="add"><br>添加10个 重复10次/24小时<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-08%20at%2011.22.23%20PM-KeepAdding.png" alt="adding"><br>添加完毕以后把管理员加入共享目录<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-08%20at%2011.27.50%20PM-toDir.png" alt="toDir"><br>确保 SA.json 都在 accounts 目录<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-08%20at%2011.33.27%20PM-accountRthere.png" alt="accountsRThere"></p>
+<h2 id="执行脚本"><a href="#执行脚本" class="headerlink" title="执行脚本"></a>执行脚本</h2><p><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-08%20at%2011.41.18%20PM-command.png" alt="excute"><br>VOILA ！<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-08%20at%2011.39.50%20PM-voila.png" alt="Voila"></p>
+<h2 id="比如"><a href="#比如" class="headerlink" title="比如"></a>比如</h2><p>因为我把<a href="mailto:dxzdxz@googlegroups.com" target="_blank" rel="noopener">dxzdxz@googlegroups.com</a>加入到00共享盘了，并给了读取权限。你只需要把<a href="mailto:dxzdxz@googlegroups.com" target="_blank" rel="noopener">dxzdxz@googlegroups.com</a>加入到你自己的团队盘 给写入权限 就可以用autorclone把里面的东西都复制到你的团队盘了。</p>
+<h2 id="又如"><a href="#又如" class="headerlink" title="又如"></a>又如</h2><p>你自己创建一个group， <a href="mailto:god@googlegroups.com" target="_blank" rel="noopener">god@googlegroups.com</a>，加一个你自己的真人号，这样，你用god这个号申请进入某个团队，比如dajiejie，等批准以后，god这个group里面的真人号直接能看到dajiejie里面的文件夹，得到文件夹ID，用这个ID，你就可以用god这个group里面的几百个SA搬运，实现一个号，搬运一个团队盘。</p>
+<h2 id="补充1：自动移除SA"><a href="#补充1：自动移除SA" class="headerlink" title="补充1：自动移除SA"></a>补充1：自动移除SA</h2><p>如果你是FC创建的SA，官方git里面提供了移除sa脚本，我下载过来了，你直接用 <a href="http://share.dxz.plus/BlogContent/removesa.py" target="_blank" rel="noopener">http://share.dxz.plus/BlogContent/removesa.py</a><br>把文件放到FC的目录里<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-11%20at%2011.11.50%20AM-remove.png" alt="remove"><br>在cmd里执行<br>python removesa.py （你的TD）ID<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-11%20at%2011.08.59%20AM-cmd.png" alt="rmcmd"><br>原来500多SA，基本都移除了，voila<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-11%20at%2011.32.20%20AM-rmvd.png" alt="rmvd"></p>
+<h2 id="补充2-提取autorclone脚本生成的sa地址"><a href="#补充2-提取autorclone脚本生成的sa地址" class="headerlink" title="补充2: 提取autorclone脚本生成的sa地址"></a>补充2: 提取autorclone脚本生成的sa地址</h2><p>非凡大佬随手给了一个脚本<a href="http://share.dxz.plus/BlogContent/getuserByFeiFan.exe" target="_blank" rel="noopener">http://share.dxz.plus/BlogContent/getuserByFeiFan.exe</a> 造福小白。<br>直接把exe文件放到含有.json文件的文件夹，双击，秒生成user.txt<br><img src="http://share.dxz.plus/BlogContent/photo_2019-11-12_15-04-12-FeifanGetSaScript.jpg" alt="FeifanScript"></p>
+<h2 id="补充3"><a href="#补充3" class="headerlink" title="补充3"></a>补充3</h2><p>实际上添加到group的sa是可以由普通15g账号创建的，使用上也和edu创建的没有区别。</p>
+<h2 id="排错"><a href="#排错" class="headerlink" title="排错"></a>排错</h2><p>试图移除下一个目录时，发现如下错误<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-11%20at%2012.09.33%20PM-error.png" alt="error"><br>cmd没上梯子<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-11%20at%201.40.13%20PM-auth.png" alt="auth"><br>controller账号没给manager权限</p>
+<h2 id="DONE"><a href="#DONE" class="headerlink" title="DONE"></a>DONE</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/09/AutorcloneSa5minutes/" rel="prev" title="AutoRclone 教程 利用Group添加SA，5分钟搞定 gdrive转存">
+      <i class="fa fa-chevron-left"></i> AutoRclone 教程 利用Group添加SA，5分钟搞定 gdrive转存
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/15/AutorcloneTips/" rel="next" title="Autorclone 教程的一些tips及折腾中遇到的错误的解决办法">
+      Autorclone 教程的一些tips及折腾中遇到的错误的解决办法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建group"><span class="nav-number">2.</span> <span class="nav-text">创建group</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行脚本"><span class="nav-number">3.</span> <span class="nav-text">执行脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比如"><span class="nav-number">4.</span> <span class="nav-text">比如</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#又如"><span class="nav-number">5.</span> <span class="nav-text">又如</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充1：自动移除SA"><span class="nav-number">6.</span> <span class="nav-text">补充1：自动移除SA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充2-提取autorclone脚本生成的sa地址"><span class="nav-number">7.</span> <span class="nav-text">补充2: 提取autorclone脚本生成的sa地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充3"><span class="nav-number">8.</span> <span class="nav-text">补充3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排错"><span class="nav-number">9.</span> <span class="nav-text">排错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DONE"><span class="nav-number">10.</span> <span class="nav-text">DONE</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">金牌大学渣</p>
+  <div class="site-description" itemprop="description">5 minutes is more than enough</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">金牌大学渣</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'ERPCAPWFshjodtg7rS21cIGO-MdYXbMMI',
+    appKey: '2WM07eER0CSsxsFLNXMDyWcc',
+    placeholder: "Just go go",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'en' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

@@ -48,27 +48,27 @@
   <meta name="description" content="5 minutes is more than enough">
 <meta property="og:type" content="website">
 <meta property="og:title" content="学渣的世界你不懂">
-<meta property="og:url" content="http:&#x2F;&#x2F;tmp.dxz.plus&#x2F;archives&#x2F;2019&#x2F;12&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;tmp.dxz.plus&#x2F;page&#x2F;2&#x2F;index.html">
 <meta property="og:site_name" content="学渣的世界你不懂">
 <meta property="og:description" content="5 minutes is more than enough">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://tmp.dxz.plus/archives/2019/12/">
+<link rel="canonical" href="http://tmp.dxz.plus/page/2/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
+    isHome: true,
     isPost: false,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>Archive | 学渣的世界你不懂</title>
+  <title>学渣的世界你不懂</title>
   
 
 
@@ -164,48 +164,107 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+        
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tmp.dxz.plus/2019/11/03/Emby/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="金牌大学渣">
+      <meta itemprop="description" content="5 minutes is more than enough">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学渣的世界你不懂">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/03/Emby/" class="post-title-link" itemprop="url">VPS 5分钟极速搭建emby服务</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-03 20:29:50" itemprop="dateCreated datePublished" datetime="2019-11-03T20:29:50+08:00">2019-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-07 23:06:25" itemprop="dateModified" datetime="2019-12-07T23:06:25+08:00">2019-12-07</time>
+              </span>
+
+          
+            <span id="/2019/11/03/Emby/" class="post-meta-item leancloud_visitors" data-flag-title="VPS 5分钟极速搭建emby服务" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 11 posts in total. Keep on posting.</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2019/11/03/Emby/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/03/Emby/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
+          <p>免费的虽然是最贵的，但是性价比却无可争议的+∞</p>
+<h2 id="废话一堆"><a href="#废话一堆" class="headerlink" title="废话一堆"></a>废话一堆</h2><p>写这个教程是主要是为了测试docker搭建typecho，由于docker映射文件夹简直太方便了，所有网站数据分分钟打包，备份，搬家。适合我这样的瞎折腾。<br>更主要的，我们手里有n多垃圾小鸡，除了探针，网盘目录外还有别的骚法么？<br>这篇文章带你骚。<br>基本上你的小鸡速度够快，尤其是晚上，比如北方联通用justhost，甲骨文之类的都可以非常爽快的试用这个方法。<br>由于是本地kodi解码，串流播放，服务器没啥压力，配置不需要多高，同时也没必要买emby专业版了，我的plex算是白买了，nas我还特意买的J3455服务端解码，看来也是浪费。<br>虽然读取的是gdrive电影，但是由于是vps搭建，host大法基本用不到了。并且这个emby个人服务应该不会触及红线，系统占用低，不用担心被各种ban(GFW&amp;VPS providers)<br>5分钟也就是个标题，看看就好，熟练了也就10分钟以内就搞定。我一连气儿搭了3个服务，太爽了，不分享出来是不行的，憋着难受</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/03/Emby/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-07T17:48:15+08:00"
-              content="2019-12-07">
-          12-07
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/12/07/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
-          </a>
-      </h2>
-
-    </header>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
+  
+  
+  
 
-
-    </div>
   </div>
-  
-  
-  
 
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 
