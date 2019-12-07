@@ -64,7 +64,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-30%20at%2011.30.13%20PM-Compare.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-30%20at%2010.17.33%20AM-SSL-TLS.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-12-06%20at%209.26.49%20AM-trojonCDNoff.png">
-<meta property="og:updated_time" content="2019-12-07T13:23:27.527Z">
+<meta property="og:updated_time" content="2019-12-07T13:39:02.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;share.dxz.plus&#x2F;BlogContent&#x2F;Screen%20Shot%202019-11-29%20at%2012.28.39%20AM-ARecord.png">
 
@@ -207,7 +207,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-12-07 20:29:50 / Modified: 21:23:27" itemprop="dateCreated datePublished" datetime="2019-12-07T20:29:50+08:00">2019-12-07</time>
+              <time title="Created: 2019-12-07 20:29:50 / Modified: 21:39:02" itemprop="dateCreated datePublished" datetime="2019-12-07T20:29:50+08:00">2019-12-07</time>
             </span>
 
           
@@ -227,9 +227,7 @@
 <h2 id="废话，可以不看"><a href="#废话，可以不看" class="headerlink" title="废话，可以不看"></a>废话，可以不看</h2><p>垃圾小鸡如何拯救（剁手党如何回本）？雪嫩的小白，如何有工程师的感觉？ 经济不景气如何提振？看这里就对了<br>折腾了两天，基本实现想要的效果。docker 配置 ss+v2ray+emby ws+http+tls+CDN。为了掩饰，我在aws的lightsail开了一个爱尔兰节点的小鸡，512内存，基本匹配市面垃圾小鸡。<br>Docker的有点就是一旦搭建好以后，可以随便折腾，配置文件保存到本地，换机分分钟<br>caddy 的优势是及其轻量，同时可以自动申请并续期证书，方便到家<br>但是现在有一个坑卡住了，就是caddy自动申请脚本，还是要到dns去添加txt记录，而教程里面是要到阿里云的dns去添加txt。所以不能自动。以本白现在的水平，搞不定了，期待高手出现。。。<br>除了这篇手动教程，还有很多选择，比如<a href="https://blog.sprov.xyz/2019/08/03/v2-ui/" target="_blank" rel="noopener"><strong>这篇面板</strong></a>教程，也非常方便。还有<a href="https://github.com/wulabing/V2Ray_ws-tls_bash_onekey" target="_blank" rel="noopener"><strong>这篇</strong></a>，是我之前一直在用的一键脚本。在多数新装的vps上面都可以成功。本教程的目的就是一个：折腾<br>如果你对自己折腾出来的东西感到开心，不怕麻烦，那就继续<br>当然，自己折腾，把思路整理清楚了，基本上什么环境都可以适用，并且配置文件完全自己驾驭，想改什么都可以。不像用脚本，出了问题，出了换系统，换脚本之外，别无他法，相当无助<br>当然，教程还需要完善，也有很多错误，需要慢慢改<br>caddy配置文件里面有3个网站v2，ss，emby<br>按需使用，增减设置文件，开停相应docker即可<br>折腾开心哈<br><strong>注意，教程里面的 邮箱信息 API 信息以及密码 UUID等 需要你自己更改，不要和教程的一毛一样</strong></p>
 <h2 id="视频记录"><a href="#视频记录" class="headerlink" title="视频记录"></a>视频记录</h2><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"http://share.dxz.plus/BlogContent/My%20Movie-dockerV2raySsCDN.mp4","pic":"http://share.dxz.plus/BlogContent/My%20Movie-dockerV2raySsCDN.png"},"danmaku":{"id":"9E2E3368B56CDBB4","api":"http://dplayer.daoapp.io","token":"tokendemo"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
 
-
-
-<p>[dplayer url=”<a href="http://share.dxz.plus/BlogContent/My%20Movie-dockerV2raySsCDN.mp4&quot;" target="_blank" rel="noopener">http://share.dxz.plus/BlogContent/My%20Movie-dockerV2raySsCDN.mp4&quot;</a> pic=”<a href="http://share.dxz.plus/BlogContent/My%20Movie-dockerV2raySsCDN.png&quot;/]" target="_blank" rel="noopener">http://share.dxz.plus/BlogContent/My%20Movie-dockerV2raySsCDN.png&quot;/]</a><br>干什么都有第一次，这个视频够简陋的了，打码就废了好长时间。机器也不行，小白难，穷小白难上加难</p>
+<p>干什么都有第一次，这个视频够简陋的了，打码就废了好长时间。机器也不行，小白难，穷小白难上加难</p>
 <h2 id="搞定CDN"><a href="#搞定CDN" class="headerlink" title="搞定CDN"></a>搞定CDN</h2><p>lightsail的系统太操蛋，先dd个debian 9<br>用脚本</p>
 <pre><code>apt update
 apt install curl screen zip nload nano -y
@@ -365,13 +363,21 @@ caddy -conf /root/caddy/Caddyfile &gt;/dev/null 2&gt;&amp;1 &amp;</code></pre><p
 <pre><code>nano /etc/crontab</code></pre><p>最下一行写入</p>
 <pre><code>@reboot root bash /root/caddy/caddystart</code></pre><p>这样每次重启就自动运行三个网站，并自动开启CDN。<br>更新证书还是没有解决，因为指定CDN的原因，必须手动复制txt到dns解析服务。<br>但是如果不指定DNS，那么这个脚本就真正做到完全自动化了<br>一点点遗憾</p>
 <h2 id="VOILA"><a href="#VOILA" class="headerlink" title="VOILA"></a>VOILA</h2><h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><ol>
-<li>我这里开cf 白天看00盘里的4k电影很轻松，remux 4k 有难度。可能是CDN的IP选的不好，以后慢慢找</li>
-<li>晚上速度待测，昨天速度只有10Mb/s，比较差，符合垃圾小鸡的水平，但是比直连要快</li>
-<li>晚上高峰结果，40m码率无压力<br>[dplayer url=”<a href="http://share.dxz.plus/BlogContent/IMG_8362-IE-emby-test-11292230.MOV&quot;" target="_blank" rel="noopener">http://share.dxz.plus/BlogContent/IMG_8362-IE-emby-test-11292230.MOV&quot;</a> pic=”<a href="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-29%20at%2011.17.20%20PM-emby-test-11292230.png&quot;/]" target="_blank" rel="noopener">http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-29%20at%2011.17.20%20PM-emby-test-11292230.png&quot;/]</a></li>
-<li>爱尔兰小鸡直连和CDN对比<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-30%20at%2011.30.13%20PM-Compare.png" alt="compare"></li>
-<li>如果都搭建好了，发现不走CDN，试试去cloudflare改下SLL/TLS设置<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-30%20at%2010.17.33%20AM-SSL-TLS.png" alt="SSL/TLS"></li>
-<li>docker的用途还有很多，比如折腾久了，想记录一下，写个记录之类的，比如这个博客就是用docker搞定等。typecho wordpress hexo 都可以，简单几步，5分钟，以后回出教程。</li>
-<li><strong>添加特洛伊 trojan</strong></li>
+<li><p>我这里开cf 白天看00盘里的4k电影很轻松，remux 4k 有难度。可能是CDN的IP选的不好，以后慢慢找</p>
+</li>
+<li><p>晚上速度待测，昨天速度只有10Mb/s，比较差，符合垃圾小鸡的水平，但是比直连要快</p>
+</li>
+<li><p>晚上高峰结果，40m码率无压力</p>
+<div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"theme":"#FADFA3","video":{"url":"http://share.dxz.plus/BlogContent/IMG_8362-IE-emby-test-11292230.MOV","pic":"http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-29%20at%2011.17.20%20PM-emby-test-11292230.png"},"danmaku":{"id":"9E2E3368B56CDBB4","api":"http://dplayer.daoapp.io","token":"tokendemo"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+</li>
+<li><p>爱尔兰小鸡直连和CDN对比<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-30%20at%2011.30.13%20PM-Compare.png" alt="compare"></p>
+</li>
+<li><p>如果都搭建好了，发现不走CDN，试试去cloudflare改下SLL/TLS设置<br><img src="http://share.dxz.plus/BlogContent/Screen%20Shot%202019-11-30%20at%2010.17.33%20AM-SSL-TLS.png" alt="SSL/TLS"></p>
+</li>
+<li><p>docker的用途还有很多，比如折腾久了，想记录一下，写个记录之类的，比如这个博客就是用docker搞定等。typecho wordpress hexo 都可以，简单几步，5分钟，以后回出教程。</p>
+</li>
+<li><p><strong>添加特洛伊 trojan</strong></p>
+</li>
 </ol>
 <p><strong>申请证书</strong><br>只需在 /root/caddy/Caddyfile 种添加一个记录，就可以申请 证书</p>
 <pre><code>trojan.trumptheidiot.tk {
